@@ -808,6 +808,12 @@ function M.setup(opts)
 
   local custom_key_maps = opts.custom_key_maps or {}
 
+  local no_default_key = opts.no_default_key or false
+
+  if no_default_key then 
+    default_key_maps = custom_key_maps or {}
+  end
+
   remove_in_opposite_direction = opts.remove_in_opposite_direction or true
 
   local enable_split_paste = opts.enable_split_paste or true

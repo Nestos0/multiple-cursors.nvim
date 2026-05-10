@@ -25,7 +25,8 @@ For [lazy.nvim](https://github.com/folke/lazy.nvim), add a section to the plugin
     {"<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = {"n", "i", "x"}, desc = "Add cursor and move up"},
     {"<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>", mode = {"n", "i", "x"}, desc = "Add cursor and move down"},
 
-    {"<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = {"n", "i"}, desc = "Add or remove cursor"},
+    {"<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = {"n", "i"}, desc = "Add or remove cursor on mouse click"},
+    {"<C-Return>", "<Cmd>MultipleCursorsAddDelete<CR>", mode = {"n"}, desc = "Add a locked cursor or remove an existing cursor"},
 
     {"<Leader>m", "<Cmd>MultipleCursorsAddVisualArea<CR>", mode = {"x"}, desc = "Add cursors to the lines of the visual area"},
 
@@ -60,6 +61,7 @@ The plugin creates a number of user commands for creating cursors:
 | --- | --- |
 | `MultipleCursorsAddDown` | Add a new virtual cursor, then move the real cursor down. </br> If cursors have previously been added in the up direction, this function will instead move the real cursor down and remove any virtual cursor on the same line. See [remove_in_opposite_direction](#remove_in_opposite_direction) for more information. </br> In normal or visual modes multiple new virtual cursors can be added with a `count`. |
 | `MultipleCursorsAddUp` | Add a new virtual cursor, then move the real cursor up. </br> If cursors have previously been added in the down direction, this function will instead move the real cursor up and remove any virtual cursor on the same line. See [remove_in_opposite_direction](#remove_in_opposite_direction) for more information. </br> In normal or visual modes multiple new virtual cursors can be added with a `count`. |
+| `MultipleCursorsAddDelete` | Add a new virtual cursor at the real cursor position, or remove an existing cursor. </br> If adding, this will also lock the virtual cursors if they aren't already locked. |
 | `MultipleCursorsMouseAddDelete` | Add a new virtual cursor to the mouse click position, or remove an existing cursor |
 | `MultipleCursorsAddVisualArea` | Add virtual cursors to each line of the visual area |
 | `MultipleCursorsAddMatches` | Search for the word under the cursor (in normal mode) or the visual area (in visual mode) and add a new cursor to each match. By default cursors are only added to matches in the visible buffer. |

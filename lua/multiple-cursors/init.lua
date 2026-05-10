@@ -572,6 +572,23 @@ function M.add_cursor_down()
 end
 
 -- Add or delete a virtual cursor at the mouse position
+function M.add_delete_cursor()
+  M.init() -- Initialise if this is the first cursor
+
+  local pos = vim.fn.getcurpos()
+
+  -- Add a virtual cursor to the mouse click position, or delete an existing one
+  virtual_cursors.add_or_delete(pos[2], pos[3])
+
+  if virtual_cursors.get_num_virtual_cursors() == 0 then
+    M.deinit(true) -- Deinitialise if there are no more cursors
+  else
+    -- Ensure virtual cursors are locked
+    virtual_cursors.lock()
+  end
+end
+
+-- Add or delete a virtual cursor at the mouse position
 function M.mouse_add_delete_cursor()
   M.init() -- Initialise if this is the first cursor
 
@@ -921,6 +938,7 @@ function M.setup(opts)
 
   vim.api.nvim_create_user_command("MultipleCursorsAddDown", M.add_cursor_down, {})
   vim.api.nvim_create_user_command("MultipleCursorsAddUp", M.add_cursor_up, {})
+  vim.api.nvim_create_user_command("MultipleCursorsAddDelete", M.add_delete_cursor, {})
 
   vim.api.nvim_create_user_command("MultipleCursorsMouseAddDelete", M.mouse_add_delete_cursor, {})
 

@@ -278,6 +278,14 @@ function M.toggle_lock()
 
 end
 
+function M.lock()
+
+  if not locked then
+    M.toggle_lock()
+  end
+
+end
+
 
 -- Visitors --------------------------------------------------------------------
 

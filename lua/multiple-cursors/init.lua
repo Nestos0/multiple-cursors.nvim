@@ -582,6 +582,9 @@ function M.add_delete_cursor()
 
   if virtual_cursors.get_num_virtual_cursors() == 0 then
     M.deinit(true) -- Deinitialise if there are no more cursors
+  else
+    -- Ensure virtual cursors are locked
+    virtual_cursors.lock()
   end
 end
 
